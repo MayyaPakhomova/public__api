@@ -1,0 +1,20 @@
+a{
+  text-decoration: none;
+  color: unset;
+}
+a:hover{
+  color: unset;
+}
+.body_hide {
+  background-color: #e5e5e5;
+  opacity         : 0;
+  transition      : .9s opacity ease;
+}
+
+.body_visible {
+  opacity: 1;
+}
+
+.list-group-item {
+  background-color: #e5e5e5;
+}

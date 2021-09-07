@@ -1,3 +1,7 @@
+setTimeout(function () {
+  document.body.classList.add('body_visible');
+}, 250);
+
 function pageNumber() {
   const urlParams = new URLSearchParams(window.location.search);
   const page = urlParams.get('page');
@@ -10,25 +14,11 @@ function loadPage(num) {
     .then((data) => renderPage(data));
 }
 
-loadPage(pageNumber());
+https: loadPage(pageNumber());
 
 function renderPage(data) {
-  const listGroup = document.getElementById('list-group');
-  for (const elem of data.data) {
-    const linkTitle = document.createElement('a');
-    linkTitle.setAttribute('href', 'post.html?id=' + elem.id);
-    linkTitle.innerText = elem.title;
-    linkTitle.classList.add(
-      'list-group-item',
-      'list-group-item-action',
-      'list-group-item-dark',
-      'link-secondary'
-    );
-    listGroup.append(linkTitle);
-  }
-
   const paginationList = document.getElementById('pagination-list');
-  for (let allPages = 1; allPages <= data.data.length; allPages++) {
+  for (let allPages = 1; allPages <= data.meta.pagination.pages; allPages++) {
     const itemListPageNumber = document.createElement('li');
     const linkPageNumber = document.createElement('a');
     linkPageNumber.href = '?page=' + allPages;
@@ -43,5 +33,21 @@ function renderPage(data) {
     );
     paginationList.append(itemListPageNumber);
     itemListPageNumber.append(linkPageNumber);
+  }
+
+  const listGroup = document.getElementById('list-group');
+  for (const elem of data.data) {
+    const itemListPageTitle = document.createElement('li');
+    const linkTitle = document.createElement('a');
+    linkTitle.setAttribute('href', 'post.html?id=' + elem.id);
+    linkTitle.innerText = elem.title;
+    itemListPageTitle.classList.add(
+      'list-group-item',
+      'list-group-item-action',
+      'list-group-item-dark',
+      'link-secondary'
+    );
+    listGroup.append(itemListPageTitle);
+    itemListPageTitle.append(linkTitle);
   }
 }
