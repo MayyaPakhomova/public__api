@@ -37,17 +37,15 @@ function renderPage(data) {
 
   const listGroup = document.getElementById('list-group');
   for (const elem of data.data) {
-    const itemListPageTitle = document.createElement('li');
     const linkTitle = document.createElement('a');
     linkTitle.setAttribute('href', 'post.html?id=' + elem.id);
     linkTitle.innerText = elem.title;
-    itemListPageTitle.classList.add(
-      'list-group-item',
-      'list-group-item-action',
-      'list-group-item-dark',
-      'link-secondary'
-    );
-    listGroup.append(itemListPageTitle);
-    itemListPageTitle.append(linkTitle);
+   linkTitle.classList.add(
+     'list-group-item',
+     'list-group-item-action',
+     'list-group-item-dark',
+     'link-secondary'
+   );
+    listGroup.append(linkTitle);
   }
 }
